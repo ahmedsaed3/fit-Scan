@@ -1,0 +1,32 @@
+search how to update the forgotten password from the collection
+continue facebook registration
+when we tap on the arrow back we need to back directly to the screen which is behind, not to the previous one
+customize the form field to call it one time only
+remove all comments from each screen
+customize the container of the login and sign up classes to call it one time
+ask how to customize all the project
+add the female section
+make all images suitable for each other
+categorize the exercises according to the ages
+fix the loading of the images in the goals class
+use reducing of the widgets rebuilds in each class ,and  use const constructor
+add const word in every class if available
+delete the uncared photos
+rebuild the blocBuilder of the exercises
+upload the drawer image on the backend stage
+add chat pot
+add more faqs inside the help and support class
+add contact us
+add premium section for scanning
+place holder for each exercises and meals api
+
+
+// final FacebookLoginCubit facebookLoginCubit;
+  //facebookLoginCubit = FacebookLoginCubit();
+
+  /*BlocProvider<FacebookLoginCubit>.value(
+                      value: facebookLoginCubit),*/
+
+
+
+
