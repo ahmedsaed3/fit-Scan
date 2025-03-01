@@ -71,7 +71,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         padding: EdgeInsets.all(16),
         child: ListView(
           children: [
-           /* ListTile(
+           ListTile(
               leading: Icon(Icons.language, color: MyColors.WiledGreen),
               title: Text("language".tr(), style: TextStyle(color: Colors.white)),
               subtitle: Text(
@@ -79,7 +79,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 style: TextStyle(color: Colors.white70),
               ),
               onTap: _showLanguageSelectionDialog,
-            ),*/
+            ),
             ListTile(
               leading: Icon(Icons.person, color: MyColors.WiledGreen),
               title: Text("account", style: TextStyle(color: Colors.white)),

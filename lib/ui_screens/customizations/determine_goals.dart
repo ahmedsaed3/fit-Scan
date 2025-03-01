@@ -1,15 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:train_me/ui_screens/customizations/progressing.dart';
 import 'package:train_me/widgets/helpers/my_colors.dart';
 
-class CustomizeGoals extends StatelessWidget {
-   final bool? isHome;
-    late final String homePlace;
+import '../../widgets/helpers/Strings.dart';
 
-  CustomizeGoals({Key? key, this.isHome}) : super(key: key) {
-    homePlace = isHome == true ? "home" : "notHome";
+class CustomizeGoals extends StatelessWidget {
+   final bool? isHomeWorkout;
+   final String? homePlace;
+
+  CustomizeGoals({Key? key, this.isHomeWorkout, this.homePlace}) : super(key: key) {
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -36,10 +37,7 @@ class CustomizeGoals extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => ProgressScreen()),
-              );
+              Navigator.pushReplacementNamed(context, mainScreen);
             },
             child: Card(
               color: MyColors.LightBlack,

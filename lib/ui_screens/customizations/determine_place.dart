@@ -81,9 +81,14 @@ class HomeOrGym extends StatelessWidget {
 
           GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => CustomizeGoals(isHome: true,)));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CustomizeGoals(isHomeWorkout: true),
+                ),
+              );
             },
+
             child: Card(
               color: MyColors.LightBlack,
               shape: RoundedRectangleBorder(

@@ -78,7 +78,7 @@ class MuscleGainMain extends StatelessWidget {
                 ],
               ),
             ),
-            ExercisesBlocBuilder(),
+            ExercisesBlocBuilder(isHomeWorkout: true,),
           ],
         ),
       ),

@@ -1,6 +1,6 @@
 {
-  "settings": "Settings",
-  "select_language": "Select Language",
-  "language": "Language",
-  "help_support": "Help & Support"
+  "settings": "settings",
+  "select_language": "select_language",
+  "language": "language",
+  "help_support": "help_support"
 }

@@ -8,7 +8,8 @@ import 'my_colors.dart';
 import '../screens/exercises_screen.dart';
 
 class ExercisesBlocBuilder extends StatefulWidget {
-  const ExercisesBlocBuilder({Key? key, }) : super(key: key);
+  final bool isHomeWorkout;
+  const ExercisesBlocBuilder({Key? key,  required this.isHomeWorkout}) : super(key: key);
 
   @override
   State<ExercisesBlocBuilder> createState() => _ExercisesBlocBuilderState();
@@ -52,6 +53,7 @@ class _ExercisesBlocBuilderState extends State<ExercisesBlocBuilder> {
   };
 
   // Filters exercises by category (bodyPart)
+
   List<Exercises> filterByCategory(List<Exercises> exercises, String category) {
     if (category == 'All') {
       return exercises; // Show all exercises if 'All' is selected
@@ -153,7 +155,7 @@ class _ExercisesBlocBuilderState extends State<ExercisesBlocBuilder> {
                     bool hasImage = imagePath != null;
                     return GestureDetector(
                       onTap: () {
-                        if (customizeGoals.homePlace == 'home') {
+                        if (widget.isHomeWorkout) {
                           Navigator.pushNamed(context, bodyWeightEquipment);
                         } else {
                           Navigator.push(
@@ -166,6 +168,7 @@ class _ExercisesBlocBuilderState extends State<ExercisesBlocBuilder> {
                           );
                         }
                       },
+
 
                       child:Container(
                         width: double.infinity,
