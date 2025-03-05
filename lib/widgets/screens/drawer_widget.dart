@@ -11,7 +11,7 @@ class MyDrawer extends StatefulWidget{
 }
 
 class _MyDrawerState extends State<MyDrawer> {
-  final String firstName = globalFirstName ?? "User";
+  final String firstName = globalUserName ?? "User";
 
   XFile? _cameraImage;
 

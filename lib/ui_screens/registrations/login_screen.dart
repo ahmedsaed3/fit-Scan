@@ -155,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       onSaved: (v) {
                         emailValue = v;
-                        globalFirstName = v;
+                        globalUserName = v;
                       },
                       cursorColor: MyColors.Grey,
                       controller: emailController,

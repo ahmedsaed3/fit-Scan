@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../widgets/helpers/Strings.dart';
 import '../../widgets/helpers/my_colors.dart';
 import 'determine_height.dart';
 
-int globalAge = 15;
 
 class DetermineAge extends StatefulWidget {
   @override
@@ -11,7 +11,7 @@ class DetermineAge extends StatefulWidget {
 }
 
 class _DetermineAgeState extends State<DetermineAge> {
-  int _selectedAge = 0; // Default selected weight
+  int _selectedAge = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +116,7 @@ class _DetermineAgeState extends State<DetermineAge> {
             // Continue Button
             ElevatedButton(
               onPressed: () {
-                // print('Selected Age: $globalAge'); // Debugging purpose
+                globalAgeNumber =_selectedAge;
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => DetermineHeight()),

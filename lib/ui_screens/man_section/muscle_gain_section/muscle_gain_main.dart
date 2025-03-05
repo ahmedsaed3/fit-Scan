@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:train_me/ui_screens/man_section/muscle_gain_section/workout_plan/start_workout.dart';
-
 import '../../../widgets/helpers/bloc_builder_helper.dart';
 import '../../../widgets/helpers/my_colors.dart';
 import '../../../widgets/screens/drawer_widget.dart';
@@ -78,7 +77,7 @@ class MuscleGainMain extends StatelessWidget {
                 ],
               ),
             ),
-            ExercisesBlocBuilder(isHomeWorkout: true,),
+            ExercisesBlocBuilder(),
           ],
         ),
       ),

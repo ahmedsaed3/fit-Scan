@@ -52,8 +52,15 @@ const mealsApiKey = '99333bcd06b844659cc22adcd959e0e5';
 const  apiHost = 'exercisedb.p.rapidapi.com';
 const exercisesUrl = 'https://$apiHost/exercises?limit=100&offset=0';
 const mealsUrl ='https://api.spoonacular.com/recipes/findByNutrients?minCarbs=10&maxCarbs=50&number=300&minProtein=5&maxProtein=100&minCalories=50&maxCalories=500';
-String? globalFirstName;
+String? globalUserName;
 String? globalGender;
+int? globalAgeNumber;
+String? globalGoalSelected;
+String? globalPlaceSelected;
+
+
+bool? isHomeWorkoutSelected;
+
 const CollectionDatabaseId='7iYuA6S1PU7jUNu7su5l';
 
 

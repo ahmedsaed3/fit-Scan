@@ -35,7 +35,7 @@ void main() async{
     }
     else{
 
-      initialRout= home_gym ;
+      initialRout= gender ;
 
     }
 

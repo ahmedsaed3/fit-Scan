@@ -4,11 +4,12 @@ import 'package:train_me/widgets/helpers/my_colors.dart';
 
 import '../../widgets/helpers/Strings.dart';
 
+
 class CustomizeGoals extends StatelessWidget {
    final bool? isHomeWorkout;
-   final String? homePlace;
+     final String? homePlace;
 
-  CustomizeGoals({Key? key, this.isHomeWorkout, this.homePlace}) : super(key: key) {
+  CustomizeGoals({Key? key, this.isHomeWorkout, this.homePlace,}) : super(key: key) {
   }
 
   Widget build(BuildContext context) {
@@ -37,7 +38,11 @@ class CustomizeGoals extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushReplacementNamed(context, mainScreen);
+              globalGoalSelected ='Weight Loss';
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => ProgressScreen()),
+              );
             },
             child: Card(
               color: MyColors.LightBlack,
@@ -87,6 +92,7 @@ class CustomizeGoals extends StatelessWidget {
 
           GestureDetector(
             onTap: () {
+              globalGoalSelected ='Muscle Gain';
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => ProgressScreen()),

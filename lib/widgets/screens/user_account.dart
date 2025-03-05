@@ -13,7 +13,7 @@ class UserAccount extends StatefulWidget {
 }
 
 class _UserAccountState extends State<UserAccount> {
-  final String firstName = globalFirstName ?? "User";
+  final String firstName = globalUserName ?? "User";
 
   XFile? _cameraImage;
   XFile? _galleryImage;
@@ -196,7 +196,7 @@ class _UserAccountState extends State<UserAccount> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   gradient: const LinearGradient(
-                    colors: [Colors.greenAccent, Colors.green],
+                    colors: [MyColors.WiledGreen, MyColors.WiledGreen],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),

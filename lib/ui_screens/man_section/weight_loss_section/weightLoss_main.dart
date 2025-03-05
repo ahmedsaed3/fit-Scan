@@ -78,7 +78,7 @@ class WeightLossMain extends StatelessWidget  {
                 ],
               ),
             ),
-            ExercisesBlocBuilder(isHomeWorkout: false,),
+            ExercisesBlocBuilder(),
           ],
         ),
       ),

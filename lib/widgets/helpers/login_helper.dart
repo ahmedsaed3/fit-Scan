@@ -225,7 +225,7 @@ class _GoogleAndFacebookState extends State<GoogleAndFacebook> {
         }
         if (state is GoogleLoginSuccess) {
           Navigator.pop(context);
-          globalFirstName = getFirstName(state.email);
+          globalUserName = getFirstName(state.email);
           Navigator.pushReplacementNamed(context, gender);
         }
         if (state is GoogleLoginFailure) {

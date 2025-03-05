@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:train_me/ui_screens/customizations/determine_goals.dart';
 import 'package:train_me/widgets/helpers/my_colors.dart';
 
 import '../../widgets/helpers/Strings.dart';
+import 'account_edit.dart';
 
-class HomeOrGym extends StatelessWidget {
+class EditPlace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,9 +33,9 @@ class HomeOrGym extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              globalPlaceSelected ='Gym Workout';
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => CustomizeGoals()));
+              globalPlaceSelected = 'Gym Workout';
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => AccountEditing()));
             },
             child: Card(
               color: MyColors.LightBlack,
@@ -84,9 +84,11 @@ class HomeOrGym extends StatelessWidget {
 
           GestureDetector(
             onTap: () {
-              globalPlaceSelected ='Home Workout';
+              globalPlaceSelected = 'Home Workout';
+
               isHomeWorkoutSelected = true; // Track selection
-              Navigator.push(context, MaterialPageRoute(builder: (context) => CustomizeGoals()));
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => AccountEditing()));
             },
             child: Card(
               color: MyColors.LightBlack,

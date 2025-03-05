@@ -2,26 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../api/model/exercises_model.dart';
 import '../../bloc/exercise_cubit/exercise_cubit.dart';
-import '../../ui_screens/customizations/determine_goals.dart';
 import 'Strings.dart';
 import 'my_colors.dart';
 import '../screens/exercises_screen.dart';
 
 class ExercisesBlocBuilder extends StatefulWidget {
-  final bool isHomeWorkout;
-  const ExercisesBlocBuilder({Key? key,  required this.isHomeWorkout}) : super(key: key);
+  const ExercisesBlocBuilder({Key? key,  }) : super(key: key);
 
   @override
   State<ExercisesBlocBuilder> createState() => _ExercisesBlocBuilderState();
 }
 
 class _ExercisesBlocBuilderState extends State<ExercisesBlocBuilder> {
-   late final CustomizeGoals customizeGoals;
 
   @override
   void initState() {
     super.initState();
-    customizeGoals = CustomizeGoals();
     context.read<ExerciseCubit>().getExercises();
   }
 
@@ -155,7 +151,7 @@ class _ExercisesBlocBuilderState extends State<ExercisesBlocBuilder> {
                     bool hasImage = imagePath != null;
                     return GestureDetector(
                       onTap: () {
-                        if (widget.isHomeWorkout) {
+                        if (isHomeWorkoutSelected==true) {
                           Navigator.pushNamed(context, bodyWeightEquipment);
                         } else {
                           Navigator.push(
