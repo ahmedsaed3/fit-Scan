@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:train_me/ui_screens/customizations/progressing.dart';
 import 'package:train_me/widgets/helpers/my_colors.dart';
 
-import '../../widgets/helpers/Strings.dart';
-
-
 class CustomizeGoals extends StatelessWidget {
-   final bool? isHomeWorkout;
-     final String? homePlace;
 
-  CustomizeGoals({Key? key, this.isHomeWorkout, this.homePlace,}) : super(key: key) {
+  CustomizeGoals({Key? key, }) : super(key: key) {
   }
 
   Widget build(BuildContext context) {
@@ -37,8 +33,10 @@ class CustomizeGoals extends StatelessWidget {
             height: 80,
           ),
           GestureDetector(
-            onTap: () {
-              globalGoalSelected ='Weight Loss';
+            onTap: ()async {
+              String goalSelected ='Weight Loss';
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              await prefs.setString('goal', goalSelected);
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => ProgressScreen()),
@@ -91,8 +89,10 @@ class CustomizeGoals extends StatelessWidget {
           // Gain Muscle Card
 
           GestureDetector(
-            onTap: () {
-              globalGoalSelected ='Muscle Gain';
+            onTap: () async{
+             String goalSelected ='Muscle Gain';
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              await prefs.setString('goal', goalSelected);
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => ProgressScreen()),

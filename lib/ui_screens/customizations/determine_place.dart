@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:train_me/ui_screens/customizations/determine_goals.dart';
 import 'package:train_me/widgets/helpers/my_colors.dart';
-
 import '../../widgets/helpers/Strings.dart';
 
 class HomeOrGym extends StatelessWidget {
@@ -32,8 +32,10 @@ class HomeOrGym extends StatelessWidget {
             height: 80,
           ),
           GestureDetector(
-            onTap: () {
-              globalPlaceSelected ='Gym Workout';
+            onTap: () async{
+              String placeSelected ='Gym Workout';
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              await prefs.setString('place', placeSelected);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => CustomizeGoals()));
             },
@@ -83,8 +85,12 @@ class HomeOrGym extends StatelessWidget {
           // Gain Muscle Card
 
           GestureDetector(
-            onTap: () {
-              globalPlaceSelected ='Home Workout';
+            onTap: ()async {
+
+              String placeSelected ='Home Workout';
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              await prefs.setString('place', placeSelected);
+
               isHomeWorkoutSelected = true; // Track selection
               Navigator.push(context, MaterialPageRoute(builder: (context) => CustomizeGoals()));
             },

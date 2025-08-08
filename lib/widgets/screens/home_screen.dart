@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:train_me/ui_screens/man_section/muscle_gain_section/workout_plan/start_workout.dart';
 import 'package:train_me/ui_screens/man_section/weight_loss_section/workout_plan/start_workout.dart';
-import 'diet_plan/start_diet.dart';
-import '../../../widgets/helpers/bloc_builder_helper.dart';
-import '../../../widgets/helpers/my_colors.dart';
-import '../../../widgets/screens/drawer_widget.dart';
+import 'package:train_me/widgets/helpers/Strings.dart';
+import 'package:train_me/widgets/screens/drawer_widget.dart';
+import '../../ui_screens/man_section/weight_loss_section/diet_plan/start_diet.dart';
+import '../helpers/bloc_builder_helper.dart';
+import '../helpers/my_colors.dart';
 
-class WeightLossMain extends StatelessWidget  {
-  WeightLossMain({super.key});
+class HomeScreen extends StatelessWidget  {
+  HomeScreen({super.key});
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -69,10 +71,19 @@ class WeightLossMain extends StatelessWidget  {
                     title: 'Workout Plan',
                     imagePath: 'assets/images/360_F_178986435_zhT6Mfe9c5rXF8w78wHvbpDLHekfgIHV.jpg',
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => StartWeightLossWorkout(previousScreen: "WeightLoss")),
-                      );
+                      if (globalGoalSelected =="Weight Loss"){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => StartWeightLossWorkout()),
+                        );
+                      }
+                      else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => StartGainMuscleWorkout()),
+                        );
+                      }
+
                     },
                   ),
                 ],

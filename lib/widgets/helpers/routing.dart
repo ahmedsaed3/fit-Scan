@@ -9,7 +9,7 @@ import 'package:train_me/ui_screens/man_section/weight_loss_section/diet_plan/me
 import 'package:train_me/ui_screens/man_section/weight_loss_section/workout_plan/exercises.dart';
 import 'package:train_me/ui_screens/registrations/reset_password_screen.dart';
 import 'package:train_me/ui_screens/registrations/signup_screen.dart';
-import 'package:train_me/ui_screens/man_section/weight_loss_section/weightLoss_main.dart';
+import 'package:train_me/widgets/screens/home_screen.dart';
 import 'package:train_me/widgets/screens/account_edit.dart';
 import 'package:train_me/widgets/screens/custom_exercises.dart';
 import 'package:train_me/widgets/screens/help_support.dart';
@@ -26,11 +26,11 @@ import '../../bloc/exercise_cubit/exercise_cubit.dart';
 import '../../bloc/login_cubit/google_login_cubit.dart';
 import '../../ui_screens/customizations/determine_place.dart';
 import '../../ui_screens/customizations/gender_screen.dart';
-import '../../ui_screens/man_section/muscle_gain_section/muscle_gain_main.dart';
 import '../screens/equipments/barbell_equipment.dart';
 import '../screens/equipments/bodyWeight_equipment.dart';
 import '../screens/equipments/cable_equipment.dart';
 import '../screens/equipments/machine_equipment.dart';
+import '../screens/logout_screen.dart';
 import '../screens/main_screen.dart';
 import '../../ui_screens/man_section/weight_loss_section/workout_plan/workout_plan.dart';
 import '../../ui_screens/registrations/login_screen.dart';
@@ -63,13 +63,17 @@ class Routing {
 
       case loginCase:
         return MaterialPageRoute(
+          builder: (_) => LoginScreen(),
+        );
+      /*case drawer:
+        return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(
             providers: [
               BlocProvider<GoogleLoginCubit>.value(value: googleLoginCubit),
             ],
-            child: LoginScreen(),
+            child: MyDrawer(),
           ),
-        );
+        );*/
 
       case resetPassword:
         return MaterialPageRoute(builder: (_) => ForgotPassword());
@@ -157,13 +161,7 @@ class Routing {
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      case muscle_gain:
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider.value(
-            value: exerciseCubit,
-            child: MuscleGainMain(),
-          ),
-        );
+
       case meals:
         return MaterialPageRoute(
             builder: (_) => BlocProvider.value(
@@ -210,7 +208,7 @@ class Routing {
         return MaterialPageRoute(
           builder: (_) => BlocProvider.value(
             value: exerciseCubit,
-            child: WeightLossMain(),
+            child: HomeScreen(),
           ),
         );
       case mainScreen:

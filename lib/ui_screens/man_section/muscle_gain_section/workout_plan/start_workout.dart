@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:train_me/ui_screens/man_section/weight_loss_section/workout_plan/workout_plan.dart';
 import '../../../../widgets/helpers/my_colors.dart';
 import '../../muscle_gain_section/workout_plan/workout_plan.dart';
-import '../../weight_loss_section/diet_plan/diet_plan.dart';
 
 class StartGainMuscleWorkout extends StatelessWidget {
   final String? previousScreen;
@@ -65,7 +63,7 @@ class StartGainMuscleWorkout extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               const Text(
-                "Lose Weight in 30 Days",
+                "Gain Muscles in 30 Days",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black,
@@ -84,11 +82,8 @@ class StartGainMuscleWorkout extends StatelessWidget {
               const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  if (previousScreen == "MuscleGain") {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) =>  MuscleGainWorkoutPlan()));
-                  } else {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => WeightLossWorkoutPlan()));
-                  }
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  MuscleGainWorkoutPlan()));
+
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: MyColors.LightBlack, // Blue color

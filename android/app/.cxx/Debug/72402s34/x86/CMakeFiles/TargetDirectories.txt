@@ -1,0 +1,2 @@
+C:/Users/IShop/train_me/android/app/.cxx/Debug/72402s34/x86/CMakeFiles/edit_cache.dir
+C:/Users/IShop/train_me/android/app/.cxx/Debug/72402s34/x86/CMakeFiles/rebuild_cache.dir

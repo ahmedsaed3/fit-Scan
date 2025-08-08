@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:train_me/widgets/helpers/Strings.dart';
 import 'package:train_me/widgets/helpers/my_colors.dart';
 
-// Declare the global variable
 
 
 class Gender extends StatefulWidget {
@@ -11,7 +11,6 @@ class Gender extends StatefulWidget {
 
 class _GenderState extends State<Gender> {
   bool? isMan;
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -56,11 +55,15 @@ class _GenderState extends State<Gender> {
                 ),
                 SizedBox(height: screenHeight * 0.03),
                 GestureDetector(
-                  onTap: () {
-                    setState(() {
+                  onTap: () async{
+                    setState(()  {
                       isMan = true;
-                      globalGender = 'Male'; // Update the global variable
                     });
+                    String Gender = 'Male';
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    await prefs.setString('gender', Gender);
+
+
                   },
                   child: Container(
                     height: screenHeight * 0.25,
@@ -96,11 +99,14 @@ class _GenderState extends State<Gender> {
                 ),
                 SizedBox(height: screenHeight * 0.02),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async{
                     setState(() {
                       isMan = false;
-                      globalGender = 'Female'; // Update the global variable
                     });
+                    String Gender = 'Female';
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    await prefs.setString('gender', Gender);
+
                   },
                   child: Container(
                     height: screenHeight * 0.25,

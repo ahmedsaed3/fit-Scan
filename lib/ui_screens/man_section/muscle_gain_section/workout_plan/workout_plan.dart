@@ -67,7 +67,7 @@ class MuscleGainWorkoutPlan extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Lose Weight in 30 Days',
+                'Gain Muscles in 30 Days',
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,

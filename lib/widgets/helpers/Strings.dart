@@ -33,6 +33,7 @@ const barEquipment ='/bar';
 const cableEquipment ='/cable';
 const machineEquipment ='/machine';
 const bodyWeightEquipment ='/bodyWeightEq';
+const drawer ='/drawer';
 
 
 
@@ -53,10 +54,13 @@ const  apiHost = 'exercisedb.p.rapidapi.com';
 const exercisesUrl = 'https://$apiHost/exercises?limit=100&offset=0';
 const mealsUrl ='https://api.spoonacular.com/recipes/findByNutrients?minCarbs=10&maxCarbs=50&number=300&minProtein=5&maxProtein=100&minCalories=50&maxCalories=500';
 String? globalUserName;
-String? globalGender;
 int? globalAgeNumber;
 String? globalGoalSelected;
 String? globalPlaceSelected;
+int globalHeightSelected=140;
+int globalWeightSelected =40;
+
+
 
 
 bool? isHomeWorkoutSelected;

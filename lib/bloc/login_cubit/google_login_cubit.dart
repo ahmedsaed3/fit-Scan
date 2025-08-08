@@ -36,8 +36,20 @@ class GoogleLoginCubit extends Cubit<GoogleLoginState> {
   }
 
   Future<void> signOut() async {
-    await _googleSignIn.signOut();
-    await _auth.signOut();
-    emit(GoogleLoginInitial());
+    try {
+      print("Starting Google sign-out");
+      await _googleSignIn.signOut();
+      print("Google sign-out completed");
+
+      print("Starting Firebase sign-out");
+      await _auth.signOut();
+      print("Firebase sign-out completed");
+
+      emit(GoogleLoginInitial());
+    } catch (e) {
+      print("Error during sign-out: $e");
+      emit(GoogleLoginFailure());
+    }
   }
+
 }

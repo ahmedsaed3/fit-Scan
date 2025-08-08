@@ -2,11 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:train_me/ui_screens/man_section/weight_loss_section/workout_plan/workout_plan.dart';
 import '../../../../widgets/helpers/my_colors.dart';
-import '../../muscle_gain_section/workout_plan/workout_plan.dart';
 
 class StartWeightLossWorkout extends StatelessWidget {
-   final String? previousScreen;
-  const StartWeightLossWorkout({Key? key, this.previousScreen}) : super(key: key);
+
+  const StartWeightLossWorkout({Key? key,}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,12 +82,8 @@ class StartWeightLossWorkout extends StatelessWidget {
               const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  if (previousScreen == "WeightLoss") {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  WeightLossWorkoutPlan()));
 
-                    Navigator.push(context, MaterialPageRoute(builder: (context) =>  WeightLossWorkoutPlan()));
-                  } else {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => MuscleGainWorkoutPlan()));
-                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: MyColors.LightBlack, // Blue color

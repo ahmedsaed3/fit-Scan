@@ -7,7 +7,6 @@ import '../../widgets/helpers/my_colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoginScreen extends StatefulWidget {
-  late String googleAccount;
 
   @override
   _LoginScreenState createState() => _LoginScreenState();

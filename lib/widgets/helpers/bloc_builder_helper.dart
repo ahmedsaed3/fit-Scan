@@ -18,7 +18,7 @@ class _ExercisesBlocBuilderState extends State<ExercisesBlocBuilder> {
   @override
   void initState() {
     super.initState();
-    context.read<ExerciseCubit>().getExercises();
+    BlocProvider.of<ExerciseCubit>(context).getExercises();
   }
 
   final List<String> muscles = [

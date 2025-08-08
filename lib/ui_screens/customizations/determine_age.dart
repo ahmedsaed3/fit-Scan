@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../widgets/helpers/Strings.dart';
 import '../../widgets/helpers/my_colors.dart';
 import 'determine_height.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DetermineAge extends StatefulWidget {
   @override
@@ -11,7 +10,7 @@ class DetermineAge extends StatefulWidget {
 }
 
 class _DetermineAgeState extends State<DetermineAge> {
-  int _selectedAge = 0;
+  int _selectedAge = 15;
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +81,7 @@ class _DetermineAgeState extends State<DetermineAge> {
                         backgroundColor: Colors.black,
                         itemExtent: 50,
                         scrollController: FixedExtentScrollController(
-                            initialItem: _selectedAge),
+                            initialItem: 0),
                         onSelectedItemChanged: (int index) {
                           setState(() {
                             _selectedAge = index + 15; // Adjust based on range
@@ -115,8 +114,10 @@ class _DetermineAgeState extends State<DetermineAge> {
 
             // Continue Button
             ElevatedButton(
-              onPressed: () {
-                globalAgeNumber =_selectedAge;
+              onPressed: () async{
+                int ageNumber =_selectedAge;
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                await prefs.setInt('age', ageNumber);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => DetermineHeight()),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:train_me/widgets/helpers/Strings.dart';
 
 import '../../widgets/helpers/my_colors.dart';
@@ -10,7 +11,7 @@ class DetermineWeight extends StatefulWidget {
 }
 
 class _DetermineWeightState extends State<DetermineWeight> {
-  int _selectedWeight = 82; // Default selected weight
+  int _selectedWeight = 40; // Default selected weight
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +74,7 @@ class _DetermineWeightState extends State<DetermineWeight> {
                     // Triangle Indicator
                     const Icon(
                       Icons.arrow_drop_up,
-                      color: Colors.green,
+                      color:MyColors.WiledGreen,
                       size: 32,
                     ),
                     Container(
@@ -82,14 +83,14 @@ class _DetermineWeightState extends State<DetermineWeight> {
                         backgroundColor: Colors.black,
                         itemExtent: 50,
                         scrollController:
-                        FixedExtentScrollController(initialItem: _selectedWeight - 50),
+                        FixedExtentScrollController(initialItem: 0),
                         onSelectedItemChanged: (int index) {
                           setState(() {
-                            _selectedWeight = index + 50; // Adjust based on range
+                            _selectedWeight = index + 40; // Adjust based on range
                           });
                         },
-                        children: List<Widget>.generate(101, (index) {
-                          int weightValue = 50 + index; // Generate weights from 50 to 150
+                        children: List<Widget>.generate(161, (index) {
+                          int weightValue = 40 + index; // Generate weights from 50 to 150
                           return Center(
                             child: Text(
                               "$weightValue kg",
@@ -114,7 +115,11 @@ class _DetermineWeightState extends State<DetermineWeight> {
 
             // Continue Button
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async{
+                int WeightSelected=_selectedWeight;
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                await prefs.setInt('weight', WeightSelected);
+
                  Navigator.pushNamed(context, home_gym);
               },
               style: ElevatedButton.styleFrom(

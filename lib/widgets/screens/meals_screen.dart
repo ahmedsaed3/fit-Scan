@@ -37,12 +37,12 @@ class _MealsScreenState extends State<MealsScreen> {
     return Scaffold(
       backgroundColor: MyColors.LightBlack,
       appBar: AppBar(
-        leading: IconButton(
+       /* leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
             Navigator.pop(context);
           },
-        ),
+        ),*/
         backgroundColor: MyColors.LightBlack,
         title: TextField(
           cursorColor: MyColors.Grey,

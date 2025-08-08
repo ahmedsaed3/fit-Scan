@@ -7,12 +7,11 @@ class CustomExercises extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(' Custom Workouts', style: TextStyle(color: Colors.white)),
-
         backgroundColor: Colors.black,
-        leading: IconButton(
+       /* leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.pop(context),
-        ),
+        ),*/
       ),
       backgroundColor: Colors.black,
       body: Column(

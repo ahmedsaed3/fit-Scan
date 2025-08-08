@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:train_me/ui_screens/man_section/weight_loss_section/weightLoss_main.dart';
+import 'package:train_me/widgets/screens/home_screen.dart';
 import 'package:train_me/widgets/helpers/my_colors.dart';
 import 'package:train_me/widgets/screens/user_account.dart';
+
 import 'custom_exercises.dart';
 import 'meals_screen.dart';
 
@@ -16,9 +17,9 @@ class _MainScreenState extends State<MainScreen> {
   final PageController _pageController = PageController();
 
   final List<Widget> _screens = [
-    WeightLossMain(),
-    //MealsScreen(),
-    //CustomExercises(),
+    HomeScreen(),
+    MealsScreen(),
+    CustomExercises(),
     UserAccount(),
   ];
 
@@ -28,7 +29,7 @@ class _MainScreenState extends State<MainScreen> {
     });
     _pageController.animateToPage(
       index,
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 200),
       curve: Curves.ease,
     );
   }
@@ -49,6 +50,9 @@ class _MainScreenState extends State<MainScreen> {
         physics: const BouncingScrollPhysics(),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedLabelStyle: TextStyle(color: Colors.white),
+        unselectedLabelStyle: TextStyle(color: Colors.white70),
+        elevation: 0,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.black,
         selectedItemColor: MyColors.WiledGreen,

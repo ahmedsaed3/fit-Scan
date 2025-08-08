@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../bloc/login_cubit/google_login_cubit.dart';
 import 'Strings.dart';
 import 'my_colors.dart';
@@ -11,10 +12,8 @@ class LoginAndSignUp extends StatefulWidget {
 }
 
 class _LoginSignUpState extends State<LoginAndSignUp> {
-
-  bool? login=true;
-  bool? signup=false;
-
+  bool? login = true;
+  bool? signup = false;
 
   void clickLogin() {
     setState(() {
@@ -29,7 +28,6 @@ class _LoginSignUpState extends State<LoginAndSignUp> {
       signup = true;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -102,8 +100,6 @@ class _LoginSignUpState extends State<LoginAndSignUp> {
   }
 }
 
-
-
 class GoogleAndFacebook extends StatefulWidget {
   @override
   State<GoogleAndFacebook> createState() => _GoogleAndFacebookState();
@@ -122,7 +118,7 @@ class _GoogleAndFacebookState extends State<GoogleAndFacebook> {
     );
 
     showDialog(
-     // barrierColor: Colors.white.withOpacity(0),
+      // barrierColor: Colors.white.withOpacity(0),
       barrierDismissible: false,
       context: context,
       builder: (context) {
@@ -131,6 +127,11 @@ class _GoogleAndFacebookState extends State<GoogleAndFacebook> {
     );
   }
 
+  /*Future<void> saveFirstName(String firstName) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('firstName ', firstName);
+
+  }*/
   Future<bool> _hasInternetConnection() async {
     try {
       final result = await InternetAddress.lookup('google.com');
@@ -139,6 +140,7 @@ class _GoogleAndFacebookState extends State<GoogleAndFacebook> {
       return false;
     }
   }
+
   String getFirstName(String email) {
     // Split the email at '@' to get the username part
     String username = email.split('@').first;
@@ -155,12 +157,6 @@ class _GoogleAndFacebookState extends State<GoogleAndFacebook> {
     // If no match found, return an empty string
     return '';
   }
-
-
-
-
-
-
 
   /*Future<void> facebookRegister() async {
     if (!await _hasInternetConnection()) {
@@ -188,7 +184,7 @@ class _GoogleAndFacebookState extends State<GoogleAndFacebook> {
     }
   }
 
- /* Widget buildFacebookBloc() {
+  /* Widget buildFacebookBloc() {
     return BlocListener<FacebookLoginCubit, FacebookLoginState>(
       listenWhen: (previous, current) {
         return previous != current;
@@ -214,18 +210,20 @@ class _GoogleAndFacebookState extends State<GoogleAndFacebook> {
     );
   }
 */
-  Widget buildGoolgeBloc() {
+  Widget buildGoogleBloc() {
     return BlocListener<GoogleLoginCubit, GoogleLoginState>(
       listenWhen: (previous, current) {
         return previous != current;
       },
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state is GoogleLoginLoading) {
           showProgressIndicator(context);
         }
         if (state is GoogleLoginSuccess) {
           Navigator.pop(context);
-          globalUserName = getFirstName(state.email);
+          String userName = getFirstName(state.email);
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setString('firstName', userName);
           Navigator.pushReplacementNamed(context, gender);
         }
         if (state is GoogleLoginFailure) {
@@ -278,7 +276,7 @@ class _GoogleAndFacebookState extends State<GoogleAndFacebook> {
           ],
         ),
         //buildFacebookBloc(),
-        buildGoolgeBloc()
+        buildGoogleBloc()
       ],
     );
   }

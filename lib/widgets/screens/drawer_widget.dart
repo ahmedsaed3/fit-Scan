@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:train_me/widgets/screens/logout_screen.dart';
 import '../helpers/Strings.dart';
 import '../helpers/my_colors.dart';
 
@@ -11,7 +13,7 @@ class MyDrawer extends StatefulWidget{
 }
 
 class _MyDrawerState extends State<MyDrawer> {
-  final String firstName = globalUserName ?? "User";
+   String firstName='User';
 
   XFile? _cameraImage;
 
@@ -19,6 +21,24 @@ class _MyDrawerState extends State<MyDrawer> {
 
   File? _lastSelectedImage;
 
+  void initState() {
+     super.initState();
+     StoredFirstName();
+  }
+
+   Future<void> StoredFirstName() async {
+   String  storedName = await getFirstName();
+     setState(() {
+       firstName= storedName;
+       globalUserName = storedName;
+
+     });
+   }
+
+   Future<String> getFirstName() async {
+     SharedPreferences prefs = await SharedPreferences.getInstance();
+     return prefs.getString('firstName') ?? "User";
+   }
   void pickCameraImage() async {
     final ImagePicker picker = ImagePicker();
     var cameraImage = await picker.pickImage(source: ImageSource.camera);
@@ -74,7 +94,7 @@ class _MyDrawerState extends State<MyDrawer> {
     }
   }
 
-  Widget showModalButtonSheet() {
+  Widget showImageSheet() {
     return BottomSheet(
       onClosing: () {},
       builder: (context) => Container(
@@ -143,83 +163,85 @@ class _MyDrawerState extends State<MyDrawer> {
   }
 
   Widget build(BuildContext context){
-    return ListView(
-      padding: EdgeInsets.zero,
-      children: [
-        Container(
-          height: 250,
-          child: DrawerHeader(
-
-            decoration: BoxDecoration(
-              color: MyColors.LightBlack,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Stack(
+    return
+      Scaffold(
+        backgroundColor: MyColors.LightBlack,
+        body: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            Container(
+              height: 250,
+              child: DrawerHeader(
+                decoration: BoxDecoration(
+                  color: MyColors.LightBlack,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CircleAvatar(
-                      backgroundColor: MyColors.Grey,
-                      radius: 50,
-                      backgroundImage: _lastSelectedImage !=null ?FileImage(_lastSelectedImage!)  // Image selected from gallery
-                          : AssetImage('assets/images/freepik-untitled-project-202502222126512ePt.png') // Default image
-                      as ImageProvider,
-                    ),
-
-                    Column(
+                    Stack(
                       children: [
-                        SizedBox(
-                          height: 65,
+                        CircleAvatar(
+                          backgroundColor: MyColors.Grey,
+                          radius: 50,
+                          backgroundImage: _lastSelectedImage !=null ?FileImage(_lastSelectedImage!)  // Image selected from gallery
+                              : AssetImage('assets/images/freepik-untitled-project-202502222126512ePt.png') // Default image
+                          as ImageProvider,
                         ),
-                        Row(
+
+                        Column(
                           children: [
                             SizedBox(
-                              width: 55,
+                              height: 65,
                             ),
-                            IconButton(
-                              onPressed: () {
-                                showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) =>
-                                      showModalButtonSheet(),
-                                );
-                              },
-                              icon: Icon(Icons.camera_alt,
-                                  color:MyColors.Grey),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 55,
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    showModalBottomSheet(
+                                      context: context,
+                                      builder: (context) =>
+                                          showImageSheet(),
+                                    );
+                                  },
+                                  icon: Icon(Icons.camera_alt,
+                                      color:MyColors.Grey),
+                                ),
+                              ],
                             ),
                           ],
-                        ),
+                        )
                       ],
-                    )
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      '$firstName',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Welcome back!',
+                      style: TextStyle(color: Colors.white70, fontSize: 14),
+                    ),
                   ],
                 ),
-                SizedBox(height: 10),
-                Text(
-                  '$firstName',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'Welcome back!',
-                  style: TextStyle(color: Colors.white70, fontSize: 14),
-                ),
-              ],
+              ),
             ),
-          ),
-        ),
 
 
-        ListTile(
-          leading: Icon(Icons.notification_add, color: MyColors.WiledGreen),
-          title: Text('Notification', style: TextStyle(color: Colors.white)),
-          onTap: () {
-            Navigator.pushNamed(context, notification);
-            // Navigate to Home
-          },
-        ),
-        /*ListTile(
+            ListTile(
+              leading: Icon(Icons.notification_add, color: MyColors.WiledGreen),
+              title: Text('Notification', style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.pushNamed(context, notification);
+                // Navigate to Home
+              },
+            ),
+            /*ListTile(
           leading: Icon(Icons.monitor_heart, color: MyColors.WiledGreen),
           title: Text('Heart Rate', style: TextStyle(color: Colors.white)),
           onTap: () {
@@ -227,29 +249,25 @@ class _MyDrawerState extends State<MyDrawer> {
             // Navigate to Home
           },
         ),*/
-        ListTile(
-          leading: Icon(Icons.self_improvement, color: MyColors.WiledGreen),
-          title: Text('Tips', style: TextStyle(color: Colors.white)),
-          onTap: () {
-Navigator.pushNamed(context, tips);
-          },
+            ListTile(
+              leading: Icon(Icons.self_improvement, color: MyColors.WiledGreen),
+              title: Text('Tips', style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.pushNamed(context, tips);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings, color: MyColors.WiledGreen),
+              title: Text('Settings', style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.pushNamed(context, setting);
+              },
+            ),
+            LogoutScreen()
+          ],
         ),
-        ListTile(
-          leading: Icon(Icons.settings, color: MyColors.WiledGreen),
-          title: Text('Settings', style: TextStyle(color: Colors.white)),
-          onTap: () {
-            Navigator.pushNamed(context, setting);
-          },
-        ),
-        ListTile(
-          leading: Icon(Icons.logout, color: MyColors.WiledGreen),
-          title: Text('Log Out', style: TextStyle(color: Colors.white)),
-          onTap: () {
-            // Handle logout action
-          },
-        ),
-      ],
-    );
+      );
+
 
   }
 }

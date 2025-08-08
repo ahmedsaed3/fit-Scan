@@ -64,37 +64,87 @@ class _SettingsScreenState extends State<SettingsScreen> {
           onPressed: () => Navigator.pop(context),
         ),
         backgroundColor: MyColors.LightBlack,
-        title: Text("settings".tr(), style: TextStyle(color: Colors.white)),
+        title: Text("Settings".tr(), style: TextStyle(color: Colors.white)),
       ),
       body: Container(
         color: MyColors.LightBlack,
         padding: EdgeInsets.all(16),
-        child: ListView(
+        child: Column(
           children: [
-           ListTile(
-              leading: Icon(Icons.language, color: MyColors.WiledGreen),
-              title: Text("language".tr(), style: TextStyle(color: Colors.white)),
-              subtitle: Text(
-                _selectedLanguage,
-                style: TextStyle(color: Colors.white70),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white10, // Light background color
+                borderRadius: BorderRadius.circular(10), // Optional: Rounded corners
               ),
-              onTap: _showLanguageSelectionDialog,
+              child: Material(
+                color: Colors.transparent, // To maintain the background color
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(10), // Match the Container's border
+                  splashColor: MyColors.LightBlack.withOpacity(.1), // Splash effect color
+                  onTap: _showLanguageSelectionDialog,
+                  child: ListTile(
+                   // Background color
+                    leading: Icon(Icons.language, color: MyColors.WiledGreen),
+                    title: Text("language".tr(),
+                        style: TextStyle(color: Colors.white)),
+                    subtitle: Text(
+                      _selectedLanguage,
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ),
+                ),
+              ),
             ),
-            ListTile(
-              leading: Icon(Icons.person, color: MyColors.WiledGreen),
-              title: Text("account", style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.pushNamed(context, userAccount);
-              },
+
+            SizedBox(
+              height: 10,
             ),
-            Divider(color: Colors.white54),
-            ListTile(
-              leading: Icon(Icons.help_outline, color: MyColors.WiledGreen),
-              title: Text("help_support".tr(), style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.pushNamed(context, helpAndSupport);
-              },
+            Container(
+              height: 70,
+              decoration: BoxDecoration(
+                color: Colors.white10, // Light background color
+                borderRadius: BorderRadius.circular(10), // Optional: Rounded corners
+              ),
+              child: Material(
+                color: Colors.transparent, // To maintain the background color
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(10), // Match the Container's border
+                  splashColor: MyColors.LightBlack.withOpacity(.5), // Splash effect color
+                  onTap: () {
+                    Navigator.pushNamed(context, userAccount);
+                  },
+                  child: ListTile(
+                    leading: Icon(Icons.person, color: MyColors.WiledGreen),
+                    title: Text("account", style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+              ),
             ),
+
+            SizedBox(height: 10,),
+            Container(
+              height: 70,
+              decoration: BoxDecoration(
+                color: Colors.white10, // Light background color
+                borderRadius: BorderRadius.circular(10), // Optional: Rounded corners
+              ),
+              child: Material(
+                color: Colors.transparent, // To maintain the background color
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(10), // Match the Container's border
+                  splashColor: MyColors.LightBlack, // Splash effect color
+                  onTap: () {
+                    Navigator.pushNamed(context, helpAndSupport);
+                  },
+                  child: ListTile(
+                    leading: Icon(Icons.help_outline, color: MyColors.WiledGreen),
+                    title: Text("help_support".tr(),
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+              ),
+            ),
+
           ],
         ),
       ),
